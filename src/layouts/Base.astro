@@ -4,6 +4,7 @@ interface Props {
   description: string;
 }
 const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -12,10 +13,23 @@ const { title, description } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#main">본문으로 이동</a>
+    <header class="site-header">
+      <a class="brand" href="/">VitaMinite</a>
+      <nav aria-label="사이트 메뉴">
+        <a href="/privacy/">개인정보처리방침</a>
+        <a href="/terms/">서비스 약관</a>
+      </nav>
+    </header>
     <slot />
+    <footer class="site-footer">
+      <p>VitaMinite 운영자 Aiden</p>
+      <a href="mailto:aidenxoxo808@gmail.com">aidenxoxo808@gmail.com</a>
+    </footer>
   </body>
 </html>
 
@@ -25,6 +39,9 @@ const { title, description } = Astro.props;
     --fg: #3b3346;
     --muted: #7a7086;
     --accent: #ff9fb2;
+    --link: #71456a;
+    --border: #d8cbd5;
+    --surface: #f5eaf0;
     color-scheme: light dark;
   }
   @media (prefers-color-scheme: dark) {
@@ -32,6 +49,9 @@ const { title, description } = Astro.props;
       --bg: #1f1b24;
       --fg: #f3eef7;
       --muted: #b3a9bd;
+      --link: #ffc2d8;
+      --border: #625264;
+      --surface: #2f2633;
     }
   }
   body {
@@ -42,4 +62,15 @@ const { title, description } = Astro.props;
     font-family: system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     line-height: 1.6;
   }
+  a { color: var(--link); text-underline-offset: 0.2em; overflow-wrap: anywhere; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+  .site-header, .site-footer { max-width: 800px; margin: 0 auto; }
+  .site-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .brand { color: var(--fg); font-weight: 700; text-decoration: none; }
+  nav { display: flex; flex-wrap: wrap; gap: 16px; }
+  .site-footer { padding: 24px 0 40px; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
+  .site-footer p { margin: 0 0 4px; }
+  .skip-link { position: absolute; left: 16px; top: -80px; padding: 8px 16px; background: var(--bg); z-index: 1; }
+  .skip-link:focus { top: 8px; }
 </style>
