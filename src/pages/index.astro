@@ -6,10 +6,12 @@ import Base from "../layouts/Base.astro";
   title="VitaMinite"
   description="화면 가장자리에 사는 픽셀 캐릭터 일정 비서"
 >
-  <main>
+  <main id="main">
     <h1>VitaMinite</h1>
     <p>화면 가장자리에 사는 픽셀 캐릭터 일정 비서예요.</p>
+    <p>Windows 바탕화면에서 Google Calendar 일정과 Google Tasks 할 일을 확인하고 관리합니다. 직접 승인한 변경을 Google 계정과 동기화하고, 일정 알림과 마감까지 남은 날짜를 보여 줍니다.</p>
     <p class="muted">첫 버전을 준비하고 있어요. 다운로드는 첫 배포 때 열립니다.</p>
+    <p>Google 연동과 기기 내 데이터 처리에 관한 내용은 <a href="/privacy/">개인정보처리방침</a>에서, 이용 조건은 <a href="/terms/">서비스 약관</a>에서 확인하세요.</p>
   </main>
 </Base>
 
@@ -20,7 +22,7 @@ import Base from "../layouts/Base.astro";
     padding: 96px 0;
   }
   h1 {
-    color: var(--accent);
+    color: var(--fg);
   }
   .muted {
     color: var(--muted);

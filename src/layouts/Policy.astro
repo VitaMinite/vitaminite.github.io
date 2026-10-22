@@ -1,0 +1,44 @@
+---
+import Base from "./Base.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  effective: string;
+}
+const { title, description, effective } = Astro.props;
+---
+
+<Base title={`${title} | VitaMinite`} description={description}>
+  <main id="main" class="policy">
+    <header>
+      <p class="eyebrow">VitaMinite</p>
+      <h1>{title}</h1>
+      <p class="effective">시행일 <time datetime={effective}>{effective}</time></p>
+    </header>
+    <article aria-label={title}>
+      <slot />
+    </article>
+  </main>
+</Base>
+
+<style>
+  .policy { max-width: 800px; margin: 0 auto; padding: 48px 0 64px; }
+  header { margin-bottom: 36px; }
+  h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.3; margin: 8px 0 16px; }
+  .eyebrow, .effective { color: var(--muted); margin: 0; }
+  .policy :global(h2) { margin: 40px 0 16px; font-size: 1.35rem; line-height: 1.4; }
+  .policy :global(p), .policy :global(li) { overflow-wrap: anywhere; }
+  .policy :global(li + li) { margin-top: 12px; }
+  .policy :global(ul), .policy :global(ol) { padding-left: 24px; }
+  .policy :global(table) { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 24px 0; font-size: 0.94rem; }
+  .policy :global(th), .policy :global(td) { text-align: left; vertical-align: top; padding: 12px; border: 1px solid var(--border); overflow-wrap: anywhere; }
+  .policy :global(th) { background: var(--surface); }
+  .policy :global(table:first-of-type th:first-child) { width: 20%; }
+  .policy :global(table:first-of-type th:nth-child(2)) { width: 50%; }
+  .policy :global(code) { font-size: 0.9em; overflow-wrap: anywhere; }
+  @media (max-width: 480px) {
+    .policy { padding-top: 32px; }
+    .policy :global(th), .policy :global(td) { padding: 8px; }
+  }
+</style>
