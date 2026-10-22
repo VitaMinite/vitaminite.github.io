@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="VitaMinite"
+  description="화면 가장자리에 사는 픽셀 캐릭터 일정 비서"
+>
+  <main>
+    <h1>VitaMinite</h1>
+    <p>화면 가장자리에 사는 픽셀 캐릭터 일정 비서예요.</p>
+    <p class="muted">첫 버전을 준비하고 있어요. 다운로드는 첫 배포 때 열립니다.</p>
+  </main>
+</Base>
+
+<style>
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 0;
+  }
+  h1 {
+    color: var(--accent);
+  }
+  .muted {
+    color: var(--muted);
+  }
+</style>
